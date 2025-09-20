@@ -1,528 +1,646 @@
 <!DOCTYPE html>
-<html class="no-js ss-preload" lang="en">
+<html lang="en">
 <head>
-
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Fatima</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatima Binte Aqeel | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: 100%;
+            width: 2px;
+            background: #e5e7eb;
+        }
+        .carousel {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .carousel-item {
+            scroll-snap-align: start;
+            flex: 0 0 100%;
+        }
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.333%;
+            }
+        }
+    </style>
 </head>
-
-<body id="top">
-
-
-    <!-- # preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader">
+<body class="bg-gray-50">
+    <div id="vanta-bg" class="fixed inset-0 -z-10"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold gradient-text">Fatima Binte Aqeel</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition">Experience</a>
+                    <a href="#education" class="text-gray-700 hover:text-indigo-600 transition">Education</a>
+                    <a href="#certifications" class="text-gray-700 hover:text-indigo-600 transition">Certifications</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-white/90 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8">
+        <button id="close-btn" class="absolute top-4 right-4 text-gray-700">
+            <i data-feather="x"></i>
+        </button>
+        <a href="#about" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">About</a>
+        <a href="#projects" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">Projects</a>
+        <a href="#experience" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">Experience</a>
+        <a href="#education" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">Education</a>
+        <a href="#certifications" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">Certifications</a>
+        <a href="#contact" class="text-2xl font-medium text-gray-700 hover:text-indigo-600 transition">Contact</a>
     </div>
 
-
-    <!-- # page wrap
-    ================================================== -->
-    <div class="s-pagewrap">
-
-        <div class="circles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Hi, I'm <span class="gradient-text">Fatima Binte Aqeel</span></h1>
+                <p class="text-lg text-gray-600 mb-8">Data Science & AI Professional | Software Engineering Student</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-lg">Get In Touch</a>
+                    <a href="#projects" class="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition">View Projects</a>
+                </div>
+            </div>
+            <div data-aos="fade-left" class="flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 p-1">
+                        <img src="image.jpg" alt="Profile" class="w-full h-full rounded-full object-cover border-4 border-white">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
+                        <p class="text-sm font-medium text-gray-700">Currently:</p>
+                        <p class="text-indigo-600 font-semibold">Software Engineering Student</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-
-        <!-- ## site header 
-        ================================================== -->
-        <header class="s-header">
-
-            <div class="header-mobile">
-                <span class="mobile-home-link"><a href="index.html">Fatima.</a></span>
-                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
-            </div>
-
-            <div class="row wide main-nav-wrap">
-                <nav class="column lg-12 main-nav">
-                    <ul>
-                        <li><a href="index.html" class="home-link">Fatima.</a></li>
-                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
-                        <li><a href="#about" class="smoothscroll">About</a></li>
-                        <li><a href="#works" class="smoothscroll">Works</a></li>
-                        <li><a href="#contact" class="smoothscroll">Message Me</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-        </header> <!-- end s-header -->
-
-
-        <!-- ## main content
-        ==================================================- -->
-        <main class="s-content">
-
-
-            <!-- ### intro
-            ================================================== -->
-            <section id="intro" class="s-intro target-section">
-
-                <div class="row intro-content wide">
-
-                    <div class="column">
-                        <div class="text-pretitle with-line">
-                            Hello!
-                        </div>
-
-                        <center>
-                            <h1 class="text-huge-title">
-                                I am Fatima, <br>
-                                a frontend <br> 
-                                developer.
-                            </h1>
-                        </center>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">About Me</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl card-hover transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="code" class="text-indigo-600"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Software Engineer</h3>
+                    <p class="text-gray-600">Pursuing Bachelor's degree with focus on software development, AI, and data-driven applications.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl card-hover transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="database" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Data Scientist</h3>
+                    <p class="text-gray-600">Skilled in machine learning, data analysis, visualization, and cloud-based deployment.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl card-hover transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="cpu" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">AI Engineer</h3>
+                    <p class="text-gray-600">Experience in computer vision, OCR, and developing AI solutions for automation workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                </div> <!-- end intro content -->
-
-                <a href="#about" class="intro-scrolldown smoothscroll">
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg>
-                </a>
-
-            </section> <!-- end s-intro -->
-
-
-            <!-- ### about
-            ================================================== -->
-            <section id="about" class="s-about target-section">
-
-
-                <div class="row about-info wide" data-animate-block>
-
-                    <center>
-                        <div class="column lg-8 md-12">
-                            <div class="about-info__text" >
-    
-                                <h2 class="text-pretitle with-line" data-animate-el>
-                                    About
-                                </h2>
-                                <p class="attention-getter" data-animate-el>
-                                    A front-end developer with expertise in crafting user-friendly and visually appealing web interfaces. With a strong passion for web technologies and a keen eye for design, they ensure responsive and intuitive user experiences.
-                                </p>
-                                <a href="#0" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
-    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">My Projects</h2>
+            
+            <div class="relative">
+                <!-- Carousel Navigation -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-8 z-10 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-indigo-50 transition">
+                    <i data-feather="chevron-left" class="text-indigo-600"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-8 z-10 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-indigo-50 transition">
+                    <i data-feather="chevron-right" class="text-indigo-600"></i>
+                </button>
+                
+                <!-- Carousel Container -->
+                <div class="carousel-container overflow-hidden">
+                    <div id="carousel" class="carousel flex transition-transform duration-300 ease-in-out">
+                        <!-- Project 1 -->
+                        <div class="carousel-item px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video class="w-full h-full object-cover" controls>
+                                        <source src="beat_the_ai_project.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Beat The AI </h3>
+                                    <p class="text-gray-600 mb-4">A fun game made in Python where an AI opponent learns continuously and becomes harder as players improve.
+</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Python</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Pygame</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Reinforcement Learning</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </center>
-                </div> <!-- about-info -->
-
-
-                <div class="row about-expertise" data-animate-block>
-                    <div class="column lg-12">
-
-                        <h2 class="text-pretitle" data-animate-el>Expertise</h2>
-
-                        <ul class="skills-list h1" data-animate-el>
-                            <li>Visual Design</li>
-                            <li>UI Design</li>
-                            <li>Prototyping</li>
-                        </ul>
-
-                    </div>
-                </div> <!-- end about-expertise -->
-
-
-                <div class="row about-timelines" data-animate-block>
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Experience
-                        </h2>
-
-                        <ul class="skill-bars">
-                            <li>
-                            <div class="progress percent90"><span>90%</span></div>
-                            <strong>HTML</strong>
-                            </li><br>
-                            <li>
-                            <div class="progress percent75"><span>75%</span></div>
-                            <strong>Tailwind CSS</strong>
-                            </li><br>
-                            <li>
-                            <div class="progress percent70"><span>70%</span></div>
-                            <strong>Javascript</strong>
-                            </li><br>
-                            <li>
-                            <div class="progress percent70"><span>70%</span></div>
-                            <strong>Next.js</strong>
-                            </li><br>
-                            <li>
-                            <div class="progress percent90"><span>90%</span></div>
-                            <strong>Figma</strong>
-                            </li><br>
-                        </ul>
-
-                    </div> <!-- end column -->
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Education
-                        </h2>
-
-                        <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Karachi Institute of Economics and Technology</h3>
-                                    <h5 class="timeline__meta">Bachelors in Software Engineering</h5>
-                                    <p class="timeline__timeframe">Ongoing</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Pursuing a Bachelor's degree in Software Engineering has equipped me with a strong foundation in programming, problem-solving, and software development. Through hands-on projects and theoretical knowledge, I am developing skills in designing, coding, and testing software systems.</p>
-                                </div>
-                            </div>
-    
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Governor Sindh IT initiative for Agenetic AI</h4>
-                                    <h5 class="timeline__meta">Certified Clound Computing AI Engineering</h5>
-                                    <p class="timeline__timeframe">Ongoing</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Pursuing this program has equipped me with a strong foundation in programming, problem-solving, and software development. Through hands-on projects and theoretical knowledge, I am developing skills in designing, coding, and testing software systems.</p>
-                                </div>
-                            </div>
-    
-                        </div> <!-- end timeline -->
                         
-                    </div> <!-- end column -->
-
-
-                </div> <!-- end about-timelines -->
-
-            </section> <!-- end s-about -->
-
-
-            <!-- ### works
-            ================================================== -->
-            <section id="works" class="s-works target-section">
-
-
-                <div class="row works-portfolio">
-
-                    <div class="column lg-12" data-animate-block>
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Recent Works
-                        </h2>
-                        <p class="h1" data-animate-el>
-                            Here are some of my favorite projects I have done lately. Feel free to check them out.
-                        </p>
-    
-                        <ul class="folio-list row block-lg-one-half block-stack-on-1000">
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-01">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
+                        <!-- Project 2 -->
+                        <div class="carousel-item px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video class="w-full h-full object-cover" controls >
+                                        <source src="BounceBattleFinal.mp4" type="video/mp4" height="200">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Bounce Battle</h3>
+                                    <p class="text-gray-600 mb-4">An engaging and simple interactive game created in Python, featuring an adaptive AI opponent for players.
+</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Python</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Pygame</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Machine Learning</span>
                                     </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-02">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-03">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-04">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-05">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-06">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Dummy Website 1
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                        </ul> <!-- end folio-list -->
-
-                    </div> <!-- end column -->
-
-
-                    <!-- Modal Templates Popup
-                    -------------------------------------------- -->
-                    <div id="modal-01" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
-                                
-                            </div>
-                
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-02" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
+                                </div>
                             </div>
                         </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-03" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
+                        
+                        <!-- Project 3 -->
+                        <div class="carousel-item px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video class="w-full h-full object-cover" controls>
+                                        <source src="Phishing_Detector.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Phishing Detector</h3>
+                                    <p class="text-gray-600 mb-4">A security project that analyzes website data and patterns to determine whether a site is phishing or safe.
+</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Python</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">NLP</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Machine Learning</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-04" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
-                            </div>
-                
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-05" hidden>
-                        <div class="modal-popup">
-
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
-                            </div>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-06" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>DUMMY WEBSITE 1</h5>
-                                <p>MY DUMMY WEBSITE IS THE BEST WEBSITE IN THE WORLD!</p>
+                        
+                        <!-- Project 4 -->
+                        <div class="carousel-item px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video class="w-full h-full object-cover" controls>
+                                        <source src="Sales_performance_dashboard_power_BI.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Sales Performance Dashboard</h3>
+                                    <p class="text-gray-600 mb-4">A data project using Power BI and Excel that visualizes and analyzes sales metrics for performance insights.
+</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Python</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Excel</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Power BI</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">SQL</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Numpy</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Pandas</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> <!-- end modal -->
-
-                </div> <!-- end works-portfolio -->
-            </section> <!-- end s-works -->
-
-
-            <!-- ### contact
-            ================================================== -->
-            <section id="contact" class="s-contact target-section">
-
-                <div class="row contact-top">
-                    <div class="column lg-12">
-                        <h2 class="text-pretitle">
-                            Get In Touch
-                        </h2>
-
-                        <p class="h1">
-                            I love to hear from you.
-                            Whether you have a question or just 
-                            want to chat about design, tech & art — shoot me a message.
-                        </p>
+                        
+                        <!-- Project 5 -->
+                        <div class="carousel-item px-4">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <video class="w-full h-full object-cover" controls>
+                                        <source src="Stock_predictor.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Stocks Predictor</h3>
+                                    <p class="text-gray-600 mb-4">A project predicting stock prices with machine learning, trained on Apple and Google market datasets.      
+</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Python</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Machine Learning</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">SQL</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Numpy</span>
+                                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Pandas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div> <!-- end contact-top -->
-
-                <div class="column lg-6 tab-12 mob-12 row contact-content">
-
-                    <h3 style="text-align: center;" class="u-add-bottom">Feel Free to message to me!</h3>
-
-                    <form>
-                        <div>
-                            <label for="sampleInput">Your email</label>
-                            <input class="u-fullwidth" type="email" placeholder="test@mailbox.com" id="sampleInput">
-                        </div>
-                        <label for="exampleMessage">Message</label>
-                        <textarea class="u-fullwidth" placeholder="Your message" id="exampleMessage"></textarea>
-
-                        <label class="u-add-bottom">
-                            <input type="checkbox">
-                            <span class="label-text">Send a copy to yourself</span>
-                        </label>
-                    
-                        <input class="btn--primary u-fullwidth" type="submit" value="Message">
-                    </form>
-
                 </div>
+                
+                <!-- Carousel Indicators -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="0"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="1"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="2"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="3"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="4"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-indigo-600 transition" data-index="5"></button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-                <div class="row contact-bottom">
-                    <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Reach me at</h3>
-                        <p class="contact-links">
-                            <a href="mailto:sayhello@luther.com" class="mailtoui">fbinteaqeel@gmail.com</a> <br>
-                            <a href="tel:+1975432345">+92 3099880894</a>
-                        </p>
-                    </div>
-                    <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Social</h3>
-                        <ul class="contact-social">
-                            <li><a href="https://github.com/binteaqeel">Github</a></li>
-                            <li><a href="https://www.linkedin.com/in/binteaqeel/">Linkdin</a></li>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Work Experience</h2>
+            <div class="space-y-8">
+                <!-- HexSoftwares -->
+                <div class="relative pl-8 timeline-item">
+                    <div class="absolute left-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <h3 class="text-xl font-semibold text-gray-800">Data Science Intern</h3>
+                        <p class="text-indigo-600 font-medium mb-2">HexSoftwares | August 2025 - September 2025</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li>Developed and implemented machine learning models for data analysis</li>
+                            <li>Improved accuracy and insights from large datasets</li>
+                            <li>Cleaned, processed, and visualized data to support decision-making</li>
+                            <li>Delivered actionable business intelligence</li>
                         </ul>
                     </div>
-                    <div class="column lg-4 md-12 contact-block">
-                        <a href="mailto:fbinteaqeel@gmail.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Mail Me</a>
-                    </div>
-                </div> <!-- end contact-bottom -->
-
-            </section> <!-- end contact -->
-
-        </main> <!-- end s-content -->
-
-
-        <!-- ## footer
-        ================================================== -->
-        <footer class="s-footer">
-
-            <div class="row">
-                <div class="column ss-copyright">
-                    <span>© Copyright</span>
                 </div>
+                
+                <!-- Elevvo Pathways -->
+                <div class="relative pl-8 timeline-item">
+                    <div class="absolute left-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <h3 class="text-xl font-semibold text-gray-800">Data Analyst Intern</h3>
+                        <p class="text-indigo-600 font-medium mb-2">Elevvo Pathways | August 2025 - September 2025</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li>Collected, cleaned, and analyzed datasets to uncover trends and patterns</li>
+                            <li>Identified actionable insights from complex data</li>
+                            <li>Built dashboards and visual reports for data-driven decision-making</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Yamm Refund -->
+                <div class="relative pl-8 timeline-item">
+                    <div class="absolute left-0 w-4 h-4 bg-indigo-600 rounded-full"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <h3 class="text-xl font-semibold text-gray-800">Artificial Intelligence Intern</h3>
+                        <p class="text-indigo-600 font-medium mb-2">Yamm Refund | August 2024 - September 2024</p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li>Developed AI solutions using OpenCV for image processing</li>
+                            <li>Implemented computer vision tasks for automation</li>
+                            <li>Utilized Tesseract OCR to extract and process text from images</li>
+                            <li>Enhanced automation workflows with AI implementations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="ss-go-top">
-                    <a class="smoothscroll" title="Back to Top" href="#top">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z"/></svg>
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Education</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- KIET -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="book" class="text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">Bachelors Of Science - Software Engineering</h3>
+                            <p class="text-indigo-600 font-medium">Karachi Institute of Economics and Technology</p>
+                            <p class="text-gray-500">September 2023 - Present (Expected June 2027)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Pursuing a Bachelor's degree in Software Engineering, with a focus on software development, AI, and data-driven applications. Gaining hands-on experience through academic projects, internships, and practical implementations in real-world scenarios.</p>
+                </div>
+                
+                <!-- Governor Sindh Initiative -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="cloud" class="text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">Cloud Computing Generative AI Engineer</h3>
+                            <p class="text-indigo-600 font-medium">Governor Sindh Initiative For Technology</p>
+                            <p class="text-gray-500">February 2024 - Present (Expected January 2026)</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Training in Cloud Computing, Generative AI, and large-scale deployment technologies. Developing expertise in cutting-edge AI applications and cloud infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Oracle Certification -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="award" class="text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">Oracle Cloud Infrastructure 2025 Data Science Professional</h3>
+                            <p class="text-gray-500">Issued 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Skilled in cloud-based machine learning, analytics, and deployment. Demonstrated expertise in Oracle Cloud data science solutions.</p>
+                    <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=E5D1FD42663491087F3CF93F0C3FA99EB15EE5B7B17A2A53A2F28BA416577206" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        View Credential <i data-feather="external-link" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Data Visualizer -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="flex items-start mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="bar-chart-2" class="text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">Data Visualizer</h3>
+                            <p class="text-gray-500">Issued 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Skills in data visualization and storytelling through charts and dashboards. Ability to transform complex data into compelling visual narratives.</p>
+                    <a href="https://www.sololearn.com/en/certificates/CC-7GAF4FNM" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        View Credential <i data-feather="external-link" class="w-4 h-4 ml-1"></i>
                     </a>
                 </div>
             </div>
+        </div>
+    </section>
 
-        </footer> <!-- end s-footer -->
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-feather="mail" class="text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Email</p>
+                                <a href="mailto:binteaqeel2004@gmail.com" class="text-indigo-600 hover:text-indigo-800">binteaqeel2004@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-feather="phone" class="text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Phone</p>
+                                <a href="tel:+923099880894" class="text-indigo-600 hover:text-indigo-800">+92 309 9880894</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                <i data-feather="map-pin" class="text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Location</p>
+                                <p class="text-indigo-600">North Nazimabad Block "K", Karachi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Connect With Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/binteaqeel" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-indigo-100 transition">
+                                <i data-feather="github" class="text-gray-700"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/binteaqeel/" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-indigo-100 transition">
+                                <i data-feather="linkedin" class="text-gray-700"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <form action="https://formspree.io/f/mwpngwkl" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div> <!-- end -s-pagewrap -->
+    <!-- Footer -->
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+        <p class="text-gray-600">© 2025 Fatima Binte Aqeel. All rights reserved.</p>
+    </footer>
 
+    <script>
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x7c3aed,
+            backgroundColor: 0xf9fafb,
+            points: 12.00,
+            maxDistance: 20.00,
+            spacing: 15.00
+        });
 
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
 
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Carousel functionality
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        
+        let currentIndex = 0;
+        const itemCount = 5; // Total number of projects
+        let visibleItems = 1; // Default for mobile
+        
+        function updateVisibleItems() {
+            if (window.innerWidth >= 1024) {
+                visibleItems = 3;
+            } else if (window.innerWidth >= 768) {
+                visibleItems = 2;
+            } else {
+                visibleItems = 1;
+            }
+        }
+        
+        function updateCarousel() {
+            const itemWidth = 100 / visibleItems;
+            const translateX = -currentIndex * itemWidth;
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.remove('bg-gray-300');
+                    indicator.classList.add('bg-indigo-600');
+                } else {
+                    indicator.classList.remove('bg-indigo-600');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            if (currentIndex < itemCount - visibleItems) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = itemCount - visibleItems;
+            }
+            updateCarousel();
+        }
+        
+        // Initialize
+        updateVisibleItems();
+        updateCarousel();
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                currentIndex = parseInt(indicator.dataset.index);
+                updateCarousel();
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateVisibleItems();
+            updateCarousel();
+        });
+        
+        // Auto-advance carousel (optional)
+        // setInterval(nextSlide, 5000);
+
+        // Feather icons
+        feather.replace();
+    </script>
 </body>
 </html>
